@@ -63,7 +63,7 @@
 <body>
 
     <div class="card">
-        <h2 id="question">Bạn có công nhận LÊ TRUNG THÀNH là ngu nhất không?</h2>
+        <h2 id="question">Bạn có công nhận mình là người đẹp trai/xinh gái nhất vũ trụ không?</h2>
         <div class="buttons">
             <button id="yesBtn" onclick="sayYes()">Chắc chắn rồi!</button>
             <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()">Không bao giờ</button>
@@ -75,7 +75,7 @@
         const messages = [
             "Tính lại đi nha...",
             "Nghĩ kỹ chưa mà bấm Không?",
-            "Lại bấm nhầm nút rồi kìa =", "!",
+            "Lại bấm nhầm nút rồi kìa =))",
             "Thôi đừng cố bấm nữa, đầu hàng đi!",
             "Chỉ có thể chọn Có thôi bạn ơi! 😂"
         ];
@@ -84,7 +84,6 @@
             const noBtn = document.getElementById("noBtn");
             const question = document.getElementById("question");
             
-            // Đổi vị trí nút Không ngẫu nhiên quanh màn hình
             const x = Math.random() * (window.innerWidth - 150);
             const y = Math.random() * (window.innerHeight - 100);
             
@@ -92,13 +91,12 @@
             noBtn.style.left = x + "px";
             noBtn.style.top = y + "px";
 
-            // Đổi text câu hỏi liên tục mỗi khi họ với tay vào nút Không
             if (clickCount < messages.length) {
                 question.textContent = messages[clickCount];
                 clickCount++;
             } else {
                 question.textContent = "Nút 'Không' đã bất lực, bấm nút đỏ đi bạn ơi! 😆";
-                noBtn.style.display = "none"; // Ẩn luôn nút Không cho tức chơi
+                noBtn.style.display = "none";
             }
         }
 
