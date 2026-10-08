@@ -58,6 +58,40 @@
             background-color: #dfe4ea;
             color: #2f3640;
         }
+
+        /* Khung thông báo tùy chỉnh (Modal) */
+        #customModal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 320px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .modal-content p {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .modal-content button {
+            background-color: #ff6b6b;
+            color: white;
+            padding: 8px 25px;
+            border-radius: 20px;
+        }
     </style>
 </head>
 <body>
@@ -67,6 +101,14 @@
         <div class="buttons">
             <button id="yesBtn" onclick="sayYes()">Chắc chắn rồi!</button>
             <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()">Không bao giờ</button>
+        </div>
+    </div>
+
+    <!-- Bảng thông báo tùy chỉnh xuất hiện khi bấm "Chắc chắn rồi!" -->
+    <div id="customModal">
+        <div class="modal-content">
+            <p>Chuẩn luôn! AI thông minh quá ta 😎 Chúc mừng bạn đã thừa nhận sự thật!</p>
+            <button onclick="closeModal()">Tuyệt vời</button>
         </div>
     </div>
 
@@ -101,7 +143,12 @@
         }
 
         function sayYes() {
-            alert("Chuẩn luôn! AI thông minh quá ta 😎 Chúc mừng bạn đã thừa nhận sự thật!");
+            // Hiển thị bảng thông báo đẹp mắt thay cho alert mặc định
+            document.getElementById("customModal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("customModal").style.display = "none";
             location.reload();
         }
     </script>
