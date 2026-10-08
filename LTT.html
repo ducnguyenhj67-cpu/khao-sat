@@ -2,15 +2,111 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Trang web của tôi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khảo Sát Đặc Biệt</title>
     <style>
-        /* DÁN PHẦN CODE CSS TỪ TRANG ONLINE VÀO ĐÂY */
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            max-width: 400px;
+        }
+
+        h2 {
+            color: #ff6b6b;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            height: 50px;
+        }
+
+        button {
+            padding: 10px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        #yesBtn {
+            background-color: #ff6b6b;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #dfe4ea;
+            color: #2f3640;
+        }
     </style>
 </head>
 <body>
-   Lê TRUNG THÀNH
+
+    <div class="card">
+        <h2 id="question">Bạn có công nhận LÊ TRUNG THÀNH là ngu nhất không?</h2>
+        <div class="buttons">
+            <button id="yesBtn" onclick="sayYes()">Chắc chắn rồi!</button>
+            <button id="noBtn" onmouseover="moveNo()" onclick="moveNo()">Không bao giờ</button>
+        </div>
+    </div>
+
     <script>
-        /* DÁN PHẦN CODE JAVASCRIPT TỪ TRANG ONLINE VÀO ĐÂY */
+        let clickCount = 0;
+        const messages = [
+            "Tính lại đi nha...",
+            "Nghĩ kỹ chưa mà bấm Không?",
+            "Lại bấm nhầm nút rồi kìa =", "!",
+            "Thôi đừng cố bấm nữa, đầu hàng đi!",
+            "Chỉ có thể chọn Có thôi bạn ơi! 😂"
+        ];
+
+        function moveNo() {
+            const noBtn = document.getElementById("noBtn");
+            const question = document.getElementById("question");
+            
+            // Đổi vị trí nút Không ngẫu nhiên quanh màn hình
+            const x = Math.random() * (window.innerWidth - 150);
+            const y = Math.random() * (window.innerHeight - 100);
+            
+            noBtn.style.position = "fixed";
+            noBtn.style.left = x + "px";
+            noBtn.style.top = y + "px";
+
+            // Đổi text câu hỏi liên tục mỗi khi họ với tay vào nút Không
+            if (clickCount < messages.length) {
+                question.textContent = messages[clickCount];
+                clickCount++;
+            } else {
+                question.textContent = "Nút 'Không' đã bất lực, bấm nút đỏ đi bạn ơi! 😆";
+                noBtn.style.display = "none"; // Ẩn luôn nút Không cho tức chơi
+            }
+        }
+
+        function sayYes() {
+            alert("Chuẩn luôn! AI thông minh quá ta 😎 Chúc mừng bạn đã thừa nhận sự thật!");
+            location.reload();
+        }
     </script>
+
 </body>
 </html>
